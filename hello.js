@@ -1,19 +1,25 @@
-// Load the http module to create an http server.
-var http = require('http');
-// Load the lorem-ipsum module
-var loremIpsum = require('lorem-ipsum');
-// Generate 2 paragraphs of text
-var dummyOutput = loremIpsum(
-{
-count: 2, // Number of words, sentences, or paragraphs to generate.
-units: 'paragraphs' // Generate words, sentences, or paragraphs.
+//  OpenShift sample Node application
+var express = require('express');
+var app     = express();
+
+
+var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080;
+var ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
+
+
+app.get('/', function (req, res) {
+    res.render('index.html');
 });
-// Configure our HTTP server to respond with Hello World to all requests.
-var server = http.createServer(function (request, response) {
-response.writeHead(200, {"Content-Type": "text/plain"});
-response.end("Hello World\n\n" + dummyOutput);
+
+
+
+// error handling
+app.use(function(err, req, res, next){
+  console.error(err.stack);
+  res.status(500).send('Something bad happened!');
 });
-// Listen on port 8000, IP defaults to 127.0.0.1
-server.listen(8000);
-// Put a friendly message on the terminal
-console.log("Server running at http://127.0.0.1:8000/");
+
+
+
+app.listen(port, ip);
+console.log('Server running on ' + ip + ':' + port);

@@ -14,5 +14,13 @@
   "license": "BSD-2-Clause",
   "bugs": {
     "url": "https://github.com/xuanlv0703/nodejs/issues"
+  },
+  "dependencies": {
+    "express": "~4.13.4"
+  },
+   "scripts": {
+    "start": "node hello.js"
   }
 }
+
+
