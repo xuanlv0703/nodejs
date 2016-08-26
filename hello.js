@@ -23,3 +23,4 @@ app.use(function(err, req, res, next){
 
 app.listen(port, ip);
 console.log('Server running on ' + ip + ':' + port);
+module.exports = app ;
