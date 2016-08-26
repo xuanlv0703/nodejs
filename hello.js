@@ -6,6 +6,7 @@ var express = require('express'),
     
 
 app.engine('html', require('ejs').renderFile);
+app.use(express.static(__dirname));
 
 
 var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080;
